@@ -1,0 +1,51 @@
+@font-face {
+    font-family: Agency;
+    src: url('../fonts/agency-fb.ttf');
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Agency;
+}
+#header {
+	height: 65px;
+	width: 100%;
+	color: black;
+	background-color: #12121F;
+}
+#logo {
+	margin-top: 15px;
+	margin-left: 20px;
+	color: white;
+	width: 101px;
+	height: 33px;
+}
+.link {
+	list-style-type: none;
+	display: inline;
+	float: right;
+	color: #6498ae;
+	font-size: 20px;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-top: 22px;
+	cursor: pointer;
+}
+#link-right {
+	margin-right: 30px;
+}
+.link:hover {
+	border-bottom: 2px solid white;
+}
+.link:active {
+	border-bottom: 2px solid white;
+}
+#quicksearch {
+	margin-top: 50px;
+}
+#quicksearch h1{
+	text-align: center;
+	font-size: 45px;
+	color: #12121F;
+	margin-top:
+}

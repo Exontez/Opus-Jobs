@@ -1,10 +1,30 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link rel="icon" href="{% static 'images/favicon2.ico' %}" type="image/x-icon"/>
+	<title>Opus Jobs</title>
 </head>
 <body>
+    <div id="header">
+	  <img src="{% static 'images/logo.png' %}" id="logo"/>
+      {% if user.is_active %}
+          <li class="link"><a href="{% url 'account_logout' %}">LOGOUT.</a></li>
+          <li class="link"><a href="registration/registration_form.html">MY ACCOUNT.</a></li>
 
+
+      {% else %}
+          <li class="link"><a href="{% url 'account_login' %}">LOGIN.</a></li>
+          <li class="link"><a href="{% url 'account_signup' %}">REGISTER.</a></li>
+
+      {% endif %}<li class="link"><a href="registration/registration_form.html">ABOUT.</a></li>
+          <li class="link"><a href="registration/registration_form.html">JOB LISTINGS.</a></li>
+          <li class="link"><a href="{% url 'index' %}">HOME.</a></li>
+    </div>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

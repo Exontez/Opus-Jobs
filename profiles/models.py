@@ -1,21 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class EmployerProfile(models.Model):
-
+class SignUpProfile(models.Model):
     account_type_choice = (
-        ('1', 'Male'),
-        ('2', 'Female')
+        ('1', 'Student'),
+        ('2', 'Employer')
     )
+
+    user = models.OneToOneField(User, unique=True)
+    account_type = models.CharField(max_length=10, choices=account_type_choice)
+    contact_number = models.IntegerField(max_length=12)
+
+    class Meta:
+        verbose_name = 'SignUp Profile'
+
+    def __unicode__(self):
+        return "%s" % self.user
+
+class JobProfile(models.Model):
+
     region_choice = (
         ('1', 'Auckland'),
         ('2', 'Wellington'),
         ('3', 'Christchurch')
-    )
-    suburb_choice = (
-        ('1', 'Glendowie'),
-        ('2', 'Kohimarama'),
-        ('3', 'Mission Bay')
     )
     industry_choice = (
         ('1', 'Restaurant'),
@@ -23,23 +30,20 @@ class EmployerProfile(models.Model):
         ('3', 'Construction')
     )
 
-    account_type = models.CharField(max_length=50, choices=account_type_choice)
-    user = models.OneToOneField(User, unique=True)
-    home_number = models.IntegerField(max_length=12)
-    mobile_number = models.IntegerField(max_length=12)
     business_name = models.CharField(max_length=50)
     business_address_number = models.IntegerField()
     business_address_street = models.CharField(max_length=50)
     business_address_region = models.CharField(max_length=50, choices=region_choice)
-    business_address_suburb = models.CharField(max_length=50, choices=suburb_choice)
+    business_address_suburb = models.CharField(max_length=50)
     business_address_postcode = models.IntegerField(max_length=4)
     business_industry = models.CharField(max_length=50, choices=industry_choice)
 
     class Meta:
-        verbose_name = 'Employer Profile'
+        verbose_name = 'Job Profile'
 
     def __unicode__(self):
         return "%s" % self.user
+
 
 
 

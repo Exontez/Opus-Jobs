@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from profiles.models import EmployerProfile
+from profiles.models import SignUpProfile
 
-class EmployerProfileAdmin(admin.ModelAdmin):
+class SignUpProfileAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(EmployerProfile, EmployerProfileAdmin)
+admin.site.register(SignUpProfile, SignUpProfileAdmin)

@@ -3,28 +3,51 @@
 
 <html lang="en">
 <head>
+    <!-- Designed by
+    eZ_Harry and Mblaseee -->
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
     <link rel="icon" href="{% static 'images/favicon2.ico' %}" type="image/x-icon"/>
 	<title>Opus Jobs</title>
 </head>
 <body>
-    <div id="header">
-	  <img src="{% static 'images/logo.png' %}" id="logo"/>
-      {% if user.is_active %}
-          <li class="link"><a href="{% url 'account_logout' %}">LOGOUT.</a></li>
-          <li class="link"><a href="registration/registration_form.html">MY ACCOUNT.</a></li>
+        <div id="header">
+          <img src="{% static 'images/logo2.png' %}" id="logo"/>
+          {% if user.is_active %}
+              <li class="link"><a href="{% url 'account_logout' %}">Logout. ({{ user.get_username }})</a></li>
+              <li class="link"><a href="registration/registration_form.html">My Account</a></li>
+              {% if user.signupprofile.account_type == '2' %}
+                  <li class="link"><a href="registration/registration_form.html">Add Listing</a></li>
+              {% endif %}
 
+          {% else %}
+              <li class="link"><a href="{% url 'account_login' %}">Login.</a></li>
+              <li class="link"><a href="{% url 'account_signup' %}">Register</a></li>
 
-      {% else %}
-          <li class="link"><a href="{% url 'account_login' %}">LOGIN.</a></li>
-          <li class="link"><a href="{% url 'account_signup' %}">REGISTER.</a></li>
+          {% endif %}
+              <li class="link"><a href="registration/registration_form.html">About</a></li>
+              <li class="link"><a href="registration/registration_form.html">Employer</a></li>
+              <li class="link"><a href="registration/registration_form.html">Student</a></li>
+              <li class="link"><a href="{% url 'index' %}">Home</a></li>
+        </div>
 
-      {% endif %}<li class="link"><a href="registration/registration_form.html">ABOUT.</a></li>
-          <li class="link"><a href="registration/registration_form.html">JOB LISTINGS.</a></li>
-          <li class="link"><a href="{% url 'index' %}">HOME.</a></li>
-    </div>
-    {% block content %}
-    {% endblock %}
+        <div id="content">
+        {% block content %}
+        {% endblock %}
+        </div>
+
+        <div id="footer">
+            <hr>
+            <div>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'index' %}">Contact</a></li>
+                <li><a href="{% url 'index' %}">Register</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'index' %}">Contact</a></li>
+                <li><a href="{% url 'index' %}">Register</a></li>
+            </div>
+        </div>
 </body>
 </html>

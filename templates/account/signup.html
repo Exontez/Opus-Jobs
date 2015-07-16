@@ -1,20 +1,32 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
 {% block content %}
 <div id="signupmain">
-<h1>{% trans "Register Account" %}</h1>
+<h1>{% trans "Register an Account" %}</h1>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
+<form id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    <label for="id_username" class="form-input-label">Account Type</label>
+    <select id="id_account_type" name="account_type"class="form-input" autofocus="autofocus">
+        <option value="1">Student</option>
+        <option value="2">Employer</option>
+    </select>
+    <p><label for="id_username" class="form-input-label">Username</label><br><input class="form-input" id="id_username" maxlength="30" name="username" placeholder="Username" type="text" required/><br></p>{{ form.username.errors }}
+    <p><label for="id_email" class="form-input-label">E-mail</label><br><input class="form-input" id="id_email" name="email" placeholder="E-mail address" type="email" required/><br></p>{{ form.email.errors }}
+    <p><label for="id_password1" class="form-input-label">Password</label><br><input class="form-input" id="id_password1" name="password1" placeholder="Password" type="password" required/><br></p>
+    <p><label for="id_password2" class="form-input-label">Confirm Password</label><br><input class="form-input" id="id_password2" name="password2" placeholder="Confirm Password" type="password" required/><br></p>
+    <p class="split-p-left"><label for="id_first_name" class="form-input-label">First Name</label><br><input class="form-input-split" id="id_first_name" maxlength="30" name="first_name" placeholder="First Name" type="text" required/><br></p>
+    <p class="split-p-right"><label for="id_last_name" class="form-input-label">Last Name</label><br><input class="form-input-split" id="id_last_name" maxlength="30" name="last_name" placeholder="Last Name" type="text" required/><br></p>
+    <p><label for="id_contact_number" class="form-input-label">Contact Number</label><br><input class="form-input" id="id_contact_number" name="contact_number" placeholder="Contact Number" type="text" required/><br></p>
+
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <button type="submit" class="form-button">{% trans "Register" %}</button>
 </form>
 </div>
 {% endblock %}
+
+

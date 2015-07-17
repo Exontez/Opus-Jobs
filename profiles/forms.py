@@ -1,5 +1,5 @@
 from django import forms
-from models import SignUpProfile
+from models import SignUpProfile, JobListing
 
 class SignupForm(forms.Form):
 
@@ -22,35 +22,23 @@ class SignupForm(forms.Form):
     class Meta:
         model = SignUpProfile
 
-'''
-class SignupForm(forms.Form):
-
-    business_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Business Name'}))
-    business_address_number = forms.IntegerField(label='',
-                                                 widget=forms.TextInput(attrs={'placeholder': 'Street Number'}))
-    business_address_street = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Street Name'}))
-    business_address_region = forms.ChoiceField(choices=EmployerProfile.region_choice, label='')
-    business_address_suburb = forms.ChoiceField(max_length='50')
-    business_address_postcode = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder': 'Postcode'}))
-    business_industry = forms.ChoiceField(choices=EmployerProfile.industry_choice, label='')
-
-    def signup(self, request, user):
-        EmployerProfile.objects.create(
-            user=user,
-            home_number=self.cleaned_data['home_number'],
-            mobile_number=self.cleaned_data['mobile_number'],
-            business_name=self.cleaned_data['business_name'],
-            business_address_number=self.cleaned_data['business_address_number'],
-            business_address_street=self.cleaned_data['business_address_street'],
-            business_address_region=self.cleaned_data['business_address_region'],
-            business_address_suburb=self.cleaned_data['business_address_suburb'],
-            business_address_postcode=self.cleaned_data['business_address_postcode'],
-            business_industry=self.cleaned_data['business_industry']
-        )
+class JobListingForm(forms.ModelForm):
 
     class Meta:
-        model = EmployerProfile
-'''
+        model = JobListing
+        fields = ['business_name', 'pay_rate', 'employment_type', 'job_description', 'business_address_region',
+            'business_address_suburb', 'business_industry']
+        widgets = {
+            'business_name': forms.TextInput(attrs={'class': 'form-input', 'required': 'true', 'placeholder': 'Name of Business'}),
+            'pay_rate': forms.NumberInput(attrs={'class': 'form-input', 'required': 'true', 'placeholder': 'Hourly Rate or One Off Amount'}),
+            'employment_type': forms.Select(attrs={'class': 'form-input', 'required': 'true'}),
+            'job_description': forms.Textarea(attrs={'class': 'form-textarea', 'required': 'true',
+                'placeholder': 'Tell us additional information about your job listing e.g. Times, Business Info, Number of positions etc. (2000 Character Limit)'}),
+            'business_address_region': forms.Select(attrs={'class': 'form-input', 'required': 'true'}),
+            'business_address_suburb': forms.TextInput(attrs={'class': 'form-input', 'required': 'true', 'placeholder': 'Business Suburb'}),
+            'business_industry': forms.Select(attrs={'class': 'form-input', 'required': 'true'}),
+        }
+
 
 
 

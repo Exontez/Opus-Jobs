@@ -86,6 +86,12 @@ body {
     text-align: center;
     margin-top: 60px;
 }
+.pageheader {
+    font-family: Gotham-Thin;
+    font-size: 45px;
+    text-align: center;
+    margin-top: 50px;
+}
 /* FORM STYLING */
 
 .form-input {
@@ -93,6 +99,16 @@ body {
     border: 1px solid #a8a8a9;
     background-color: #f1f1f1;
     height: 38px;
+    width: 500px;
+    border-radius: 4px;
+    font-size: 15px;
+    text-indent: 10px;
+}
+.form-textarea {
+    margin-top: 10px;
+    border: 1px solid #a8a8a9;
+    background-color: #f1f1f1;
+    height: 200px;
     width: 500px;
     border-radius: 4px;
     font-size: 15px;
@@ -130,6 +146,8 @@ body {
 }
 .form-input-label {
     font-weight: bold;
+    font-family: Arial;
+    font-size: 15px;
 }
 .split-p-left {
     float: left;
@@ -198,4 +216,11 @@ form ul {
 }
 #createaccount a:hover {
 	color: blue;
+}
+
+/* CREATE JOB LISTING PAGE */
+
+#createjoblisting {
+    width: 505px;
+    margin: 0 auto;
 }

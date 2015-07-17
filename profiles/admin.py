@@ -1,8 +1,17 @@
 from django.contrib import admin
-
-from profiles.models import SignUpProfile
+from profiles.models import SignUpProfile, JobListing
 
 class SignUpProfileAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["__unicode__", "account_type"]
+
+    class Meta:
+        model = SignUpProfile
+
+class JobListingAdmin(admin.ModelAdmin):
+    list_display = ["__unicode__", "business_name", "user", "job_id"]
+
+    class Meta:
+        model = JobListing
 
 admin.site.register(SignUpProfile, SignUpProfileAdmin)
+admin.site.register(JobListing, JobListingAdmin)

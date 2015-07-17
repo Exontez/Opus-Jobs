@@ -17,7 +17,7 @@ class SignUpProfile(models.Model):
     def __unicode__(self):
         return "%s" % self.user
 
-class JobProfile(models.Model):
+class JobListing(models.Model):
 
     region_choice = (
         ('1', 'Auckland'),
@@ -25,24 +25,35 @@ class JobProfile(models.Model):
         ('3', 'Christchurch')
     )
     industry_choice = (
-        ('1', 'Restaurant'),
-        ('2', 'IT'),
-        ('3', 'Construction')
+        ('1', 'Accounting'),
+        ('2', 'Agriculture, fishing & forestry'),
+        ('3', 'Automotive'),
+        ('4', 'Banking, finance & insurance'),
+        ('5', 'Construction & Architecture'),
+        ('6', 'Customer service'),
+    )
+    employment_type_choice = (
+        ('1', 'Full Time'),
+        ('2', 'Part Time'),
+        ('3', 'One-off'),
+        ('4', 'Other')
     )
 
+    user = models.OneToOneField(User, unique=True)
     business_name = models.CharField(max_length=50)
-    business_address_number = models.IntegerField()
-    business_address_street = models.CharField(max_length=50)
+    pay_rate = models.FloatField()
+    employment_type = models.CharField(max_length=10, choices=employment_type_choice)
+    job_description = models.CharField(max_length=2000)
     business_address_region = models.CharField(max_length=50, choices=region_choice)
     business_address_suburb = models.CharField(max_length=50)
-    business_address_postcode = models.IntegerField(max_length=4)
     business_industry = models.CharField(max_length=50, choices=industry_choice)
+    job_id = models.IntegerField(unique=True)
 
     class Meta:
-        verbose_name = 'Job Profile'
+        verbose_name = 'Job Listing'
 
     def __unicode__(self):
-        return "%s" % self.user
+        return "%s" % self.business_name
 
 
 

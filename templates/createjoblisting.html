@@ -7,19 +7,19 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
         <p> <label for="id_username" class="form-input-label">Business Name</label><br>
-        {{ form.business_name }}<br><p>
+        {{ form.business_name }}<br><p>{{ form.business_name.errors }}
         <p><label for="id_username" class="form-input-label">Pay Rate</label><br>
-        {{ form.pay_rate }}<br></p>
+        {{ form.pay_rate }}<br></p>{{ form.pay_rate.errors }}
         <p><label for="id_username" class="form-input-label">Employment Type</label><br>
-        {{ form.employment_type }}<br><p>
+        {{ form.employment_type }}<br><p>{{ form.employment_type.errors }}
         <p><label for="id_username" class="form-input-label">Job Description</label><br>
-        {{ form.job_description }}<br><p>
+        {{ form.job_description }}<br><p>{{ form.job_description.errors }}
         <p><label for="id_username" class="form-input-label">Business Region</label><br>
-        {{ form.business_address_region }}<br><p>
+        {{ form.business_address_region }}<br><p>{{ form.business_address_region.errors }}
         <p><label for="id_username" class="form-input-label">Business Suburb</label><br>
-        {{ form.business_address_suburb }}<br><p>
+        {{ form.business_address_suburb }}<br><p>{{ form.business_address_suburb.errors }}
         <p><label for="id_username" class="form-input-label">Business Industry</label><br>
-        {{ form.business_industry }}<br><p>
+        {{ form.business_industry }}<br><p>{{ form.business_industry.errors }}
         <button type="submit" class="form-button">Create Job Listing</button>
     </form>
 </div>

@@ -8,7 +8,7 @@ class SignUpProfileAdmin(admin.ModelAdmin):
         model = SignUpProfile
 
 class JobListingAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__", "business_name", "user", "job_id"]
+    list_display = ["__unicode__", "business_name", "user"]
 
     class Meta:
         model = JobListing

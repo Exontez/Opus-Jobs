@@ -39,7 +39,7 @@ class JobListing(models.Model):
         ('4', 'Other')
     )
 
-    user = models.OneToOneField(User, unique=True)
+    user = models.OneToOneField(User, unique=False)
     business_name = models.CharField(max_length=50)
     pay_rate = models.FloatField()
     employment_type = models.CharField(max_length=10, choices=employment_type_choice)
@@ -47,7 +47,7 @@ class JobListing(models.Model):
     business_address_region = models.CharField(max_length=50, choices=region_choice)
     business_address_suburb = models.CharField(max_length=50)
     business_industry = models.CharField(max_length=50, choices=industry_choice)
-    job_id = models.IntegerField(unique=True)
+    job_id = models.AutoField("ID", primary_key=True, editable=False, unique=True)
 
     class Meta:
         verbose_name = 'Job Listing'

@@ -223,4 +223,8 @@ form ul {
 #createjoblisting {
     width: 505px;
     margin: 0 auto;
+    font-family: Gotham-Thin;
+}
+#createjoblisting ul {
+    list-style-type: none;
 }

@@ -8,6 +8,7 @@
 
 <form id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
+    {{ form.non_field_errors }}
     <label for="id_username" class="form-input-label">Account Type</label>
     <select id="id_account_type" name="account_type"class="form-input" autofocus="autofocus">
         <option value="1">Student</option>
@@ -15,8 +16,8 @@
     </select>
     <p><label for="id_username" class="form-input-label">Username</label><br><input class="form-input" id="id_username" maxlength="30" name="username" placeholder="Username" type="text" required/><br></p>{{ form.username.errors }}
     <p><label for="id_email" class="form-input-label">E-mail</label><br><input class="form-input" id="id_email" name="email" placeholder="E-mail address" type="email" required/><br></p>{{ form.email.errors }}
-    <p><label for="id_password1" class="form-input-label">Password</label><br><input class="form-input" id="id_password1" name="password1" placeholder="Password" type="password" required/><br></p>
-    <p><label for="id_password2" class="form-input-label">Confirm Password</label><br><input class="form-input" id="id_password2" name="password2" placeholder="Confirm Password" type="password" required/><br></p>
+    <p><label for="id_password1" class="form-input-label">Password</label><br><input class="form-input" id="id_password1" name="password1" placeholder="Password" type="password" required/><br></p>{{ form.password1.errors }}
+    <p><label for="id_password2" class="form-input-label">Confirm Password</label><br><input class="form-input" id="id_password2" name="password2" placeholder="Confirm Password" type="password" required/><br></p>{{ form.password2.errors }}
     <p class="split-p-left"><label for="id_first_name" class="form-input-label">First Name</label><br><input class="form-input-split" id="id_first_name" maxlength="30" name="first_name" placeholder="First Name" type="text" required/><br></p>
     <p class="split-p-right"><label for="id_last_name" class="form-input-label">Last Name</label><br><input class="form-input-split" id="id_last_name" maxlength="30" name="last_name" placeholder="Last Name" type="text" required/><br></p>
     <p><label for="id_contact_number" class="form-input-label">Contact Number</label><br><input class="form-input" id="id_contact_number" name="contact_number" placeholder="Contact Number" type="text" required/><br></p>

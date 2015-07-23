@@ -38,6 +38,10 @@ class JobListing(models.Model):
         ('3', 'One-off'),
         ('4', 'Other')
     )
+    contact_method_choice = (
+        ('1', 'Phone'),
+        ('2', 'Email'),
+    )
 
     user = models.OneToOneField(User, unique=False)
     business_name = models.CharField(max_length=50)
@@ -47,6 +51,8 @@ class JobListing(models.Model):
     business_address_region = models.CharField(max_length=50, choices=region_choice)
     business_address_suburb = models.CharField(max_length=50)
     business_industry = models.CharField(max_length=50, choices=industry_choice)
+    contact_method = models.CharField(max_length=50, choices=contact_method_choice)
+    active_listing = models.BooleanField(default=True)
     job_id = models.AutoField("ID", primary_key=True, editable=False, unique=True)
 
     class Meta:

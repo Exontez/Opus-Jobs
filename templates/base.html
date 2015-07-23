@@ -12,10 +12,32 @@
 </head>
 <body>
         <div id="header">
+        <ul style="margin-top: 0px; padding-left: 0px;">
           <img src="{% static 'images/logo2.png' %}" id="logo"/>
           {% if user.is_active %}
               <li class="link"><a href="{% url 'account_logout' %}">Logout. ({{ user.get_username }})</a></li>
-              <li class="link"><a href="registration/registration_form.html">My Account</a></li>
+              {% if user.signupprofile.account_type == '2' %}
+              <li class="link-drop"><a href="">My Account</a>
+                <ul class="link-drop-ul">
+                    <div class="triangle"></div>
+                    <div class="link-drop-box-employer">
+                    <li><a href="">Edit Profile</a></li>
+                    <li><a href="">Edit Listings</a></li>
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                    </div>
+                </ul>
+              </li>
+              {% else %}
+              <li class="link-drop"><a href="">My Account</a>
+                <ul class="link-drop-ul">
+                    <div class="triangle"></div>
+                    <div class="link-drop-box-student">
+                    <li><a href="">Edit Profile</a></li>
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                    </div>
+                </ul>
+              </li>
+              {% endif %}
               {% if user.signupprofile.account_type == '2' %}
                   <li class="link"><a href="{% url 'createjoblisting' %}">Add Listing</a></li>
               {% endif %}
@@ -25,10 +47,11 @@
               <li class="link"><a href="{% url 'account_signup' %}">Register</a></li>
 
           {% endif %}
-              <li class="link"><a href="registration/registration_form.html">About</a></li>
+              <li class="link"><a href="{% url 'about' %}">About</a></li>
               <li class="link"><a href="{% url 'createjoblisting' %}">Employer</a></li>
               <li class="link"><a href="registration/registration_form.html">Student</a></li>
               <li class="link"><a href="{% url 'index' %}">Home</a></li>
+        </ul>
         </div>
 
         <div id="content">

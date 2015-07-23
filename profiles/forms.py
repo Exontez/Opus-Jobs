@@ -27,7 +27,7 @@ class JobListingForm(forms.ModelForm):
     class Meta:
         model = JobListing
         fields = ['business_name', 'pay_rate', 'employment_type', 'job_description', 'business_address_region',
-            'business_address_suburb', 'business_industry']
+            'business_address_suburb', 'business_industry', 'contact_method']
         widgets = {
             'business_name': forms.TextInput(attrs={'class': 'form-input', 'required': 'true', 'placeholder': 'Name of Business'}),
             'pay_rate': forms.NumberInput(attrs={'class': 'form-input', 'required': 'true', 'placeholder': 'Hourly Rate or One Off Amount'}),
@@ -37,6 +37,7 @@ class JobListingForm(forms.ModelForm):
             'business_address_region': forms.Select(attrs={'class': 'form-input', 'required': 'true'}),
             'business_address_suburb': forms.TextInput(attrs={'class': 'form-input', 'required': 'true', 'placeholder': 'Business Suburb'}),
             'business_industry': forms.Select(attrs={'class': 'form-input', 'required': 'true'}),
+            'contact_method': forms.Select(attrs={'class': 'form-input', 'required': 'true'}),
         }
 
 

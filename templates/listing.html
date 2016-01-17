@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="listing-content">
+        <div class="listing-left-column">
+        <p class="listing-details-title">Job Details</p>
+        <p class="listing-details-bold">Job Title:</p><p class="listing-details-info">{{ joblistings.job_title }}</p>
+        <p class="listing-details-bold">Employment Type:</p><p class="listing-details-info">{{ joblistings.employment_type }}</p>
+        <p class="listing-details-bold">Pay Rate:</p><p class="listing-details-info">${{ joblistings.pay_rate }}</p>
+        <p class="listing-details-bold">Business Region:</p><p class="listing-details-info">{{ joblistings.business_address_region }}</p>
+        <p class="listing-details-bold">Business Suburb:</p><p class="listing-details-info">{{ joblistings.business_address_suburb }}</p>
+        <p class="listing-details-bold">Business Industry:</p><p class="listing-details-info">{{ joblistings.business_industry }}</p>
+        <p class="listing-details-bold">Email:</p><p class="listing-details-info">{{ joblistings.email }}</p>
+        <p class="listing-details-bold">Contact Number:</p><p class="listing-details-info">{{ joblistings.telephone }}</p>
+        <button type="submit" class="listing-details-button">Contact Employer</button>
+        </div>
+        <div class="listing-right-column">
+        <h1 class="listing-title-secondary">{{ joblistings.job_title }}</h1>
+        <p class="listing-job-description">{{ joblistings.job_description }}</p>
+            <div class="listing-application">
+                <h1 class="listing-details-title">How To Apply?</h1>
+                <ul class="listing-application-bullets">
+                    <li>Each employer will have provided either a contact number, a email or both in the job details to the left.</li>
+                    <li>Simply use the buttons below which will direct you on how to contact them, however if that doesn't work you can contact </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

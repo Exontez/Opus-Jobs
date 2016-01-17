@@ -1,75 +1,88 @@
 <!DOCTYPE html>
 {% load static %}
 
-<html lang="en">
+<html>
 <head>
-    <!-- Designed by
-    eZ_Harry and Mblaseee -->
+    <!-- Designed by eZ_Harry  -->
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
-    <link rel="icon" href="{% static 'images/favicon2.ico' %}" type="image/x-icon"/>
+    <link rel="icon" href="{% static 'images/ico.ico' %}" type="image/x-icon"/>
 	<title>Opus Jobs</title>
 </head>
 <body>
         <div id="header">
         <ul style="margin-top: 0px; padding-left: 0px;">
           <img src="{% static 'images/logo2.png' %}" id="logo"/>
-          {% if user.is_active %}
+          {% if user.is_active %} <!-- This checks the user is active and then grabs their username to put in the nav bar  -->
               <li class="link"><a href="{% url 'account_logout' %}">Logout. ({{ user.get_username }})</a></li>
-              {% if user.signupprofile.account_type == '2' %}
-              <li class="link-drop"><a href="">My Account</a>
+              {% if user.signupprofile.account_type == '2' %} <!-- This selects which dropdown menu to display based on the users account type -->
+              <li class="link-drop"><a>My Account</a>
                 <ul class="link-drop-ul">
                     <div class="triangle"></div>
-                    <div class="link-drop-box-employer">
-                    <li><a class="link-drop-a" href="">Edit Profile</a></li>
-                    <li><a class="link-drop-a" href="">Edit Listings</a></li>
+                    <div class="link-drop-box">
+                    <li><a class="link-drop-a" href="{% url 'account_change_password' %}">Edit Profile</a></li>
+                    <li><a class="link-drop-a" href="{% url 'editlistingportal' %}">Edit Listings</a></li>
                     <li><a class="link-drop-a" href="{% url 'account_logout' %}">Logout</a></li>
                     </div>
                 </ul>
               </li>
               {% else %}
-              <li class="link-drop"><a href="">My Account</a>
+              <li class="link-drop"><a>My Account</a>
                 <ul class="link-drop-ul">
                     <div class="triangle"></div>
-                    <div class="link-drop-box-student">
-                    <li><a href="">Edit Profile</a></li>
+                    <div class="link-drop-box">
+                    <li><a href="{% url 'account_change_password' %}">Edit Profile</a></li>
                     <li><a href="{% url 'account_logout' %}">Logout</a></li>
                     </div>
                 </ul>
               </li>
               {% endif %}
-              {% if user.signupprofile.account_type == '2' %}
-                  <li class="link"><a href="{% url 'createjoblisting' %}">Add Listing</a></li>
-              {% endif %}
+
 
           {% else %}
-              <li class="link"><a href="{% url 'account_login' %}">Login.</a></li>
+              <li class="link"><a href="{% url 'account_login' %}">Login.</a></li> <!-- The URL function in here is what Django uses to link pages  -->
               <li class="link"><a href="{% url 'account_signup' %}">Register</a></li>
 
           {% endif %}
               <li class="link"><a href="{% url 'about' %}">About</a></li>
-              <li class="link"><a href="{% url 'createjoblisting' %}">Employer</a></li>
-              <li class="link"><a href="registration/registration_form.html">Student</a></li>
+              <li class="link-drop"><a>Employer</a>
+                  <ul class="link-drop-ul">
+                      <div class="triangle"></div>
+                      <div class="link-drop-box">
+                          <li><a class="link-drop-a" href="{% url 'createjoblisting' %}">Add Listing</a></li>
+                           <!-- <li><a class="link-drop-a" href="{% url 'featurenotimplemented' %}">How it works</a></li> To be added later -->
+                      </div>
+                  </ul>
+              </li>
+              <li class="link-drop"><a>Student</a>
+                  <ul class="link-drop-ul">
+                      <div class="triangle"></div>
+                      <div class="link-drop-box">
+                          <li><a class="link-drop-a" href="{% url 'browse' %}">Job Listings</a></li>
+                          <!-- <li><a class="link-drop-a" href="{% url 'featurenotimplemented' %}">How it works</a></li> To be added later -->
+                      </div>
+                  </ul>
+              </li>
               <li class="link"><a href="{% url 'index' %}">Home</a></li>
         </ul>
         </div>
 
         <div id="content">
-        {% block content %}
+        {% block content %} <!-- This is used to extend the base.html file to other html pages -->
         {% endblock %}
         </div>
 
-        <div id="footer">
+        <div id="footer"> <!-- This is the websites footer bar  -->
             <hr>
             <div>
                 <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'index' %}">Contact</a></li>
-                <li><a href="{% url 'index' %}">Register</a></li>
+                <li><a href="{% url 'featurenotimplemented' %}">Contact</a></li>
+                <li><a href="{% url 'account_login' %}">Login</a></li>
             </div>
             <div>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'index' %}">Contact</a></li>
-                <li><a href="{% url 'index' %}">Register</a></li>
+                <li><a href="{% url 'account_signup' %}">Register</a></li>
+                <li><a href="{% url 'browse' %}">Browse</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
             </div>
         </div>
 </body>

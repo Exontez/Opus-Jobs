@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
+#This is the model for my extended signup profile
 class SignUpProfile(models.Model):
     account_type_choice = (
         ('1', 'Student'),
@@ -9,7 +11,7 @@ class SignUpProfile(models.Model):
 
     user = models.OneToOneField(User, unique=True)
     account_type = models.CharField(max_length=10, choices=account_type_choice)
-    contact_number = models.IntegerField(max_length=12)
+    contact_number = models.IntegerField()
 
     class Meta:
         verbose_name = 'SignUp Profile'
@@ -17,46 +19,47 @@ class SignUpProfile(models.Model):
     def __unicode__(self):
         return "%s" % self.user
 
+# This is the model for my edit and add job listing page
 class JobListing(models.Model):
 
     region_choice = (
-        ('1', 'Auckland'),
-        ('2', 'Wellington'),
-        ('3', 'Christchurch')
+        ('Auckland', 'Auckland'),
+        ('Wellington', 'Wellington'),
+        ('Christchurch', 'Christchurch')
     )
     industry_choice = (
-        ('1', 'Accounting'),
-        ('2', 'Agriculture, fishing & forestry'),
-        ('3', 'Automotive'),
-        ('4', 'Banking, finance & insurance'),
-        ('5', 'Construction & Architecture'),
-        ('6', 'Customer service'),
+        ('Accounting', 'Accounting'),
+        ('Agriculture, fishing & forestry', 'Agriculture, fishing & forestry'),
+        ('Automotive', 'Automotive'),
+        ('Banking, finance & insurance', 'Banking, finance & insurance'),
+        ('Construction & Architecture', 'Construction & Architecture'),
+        ('Customer service', 'Customer service'),
     )
     employment_type_choice = (
-        ('1', 'Full Time'),
-        ('2', 'Part Time'),
-        ('3', 'One-off'),
-        ('4', 'Other')
-    )
-    contact_method_choice = (
-        ('1', 'Phone'),
-        ('2', 'Email'),
+        ('Full Time', 'Full Time'),
+        ('Part Time', 'Part Time'),
+        ('One-off', 'One-off'),
+        ('Other', 'Other')
     )
 
-    user = models.OneToOneField(User, unique=False)
-    business_name = models.CharField(max_length=50)
-    pay_rate = models.FloatField()
+    user = models.CharField(max_length=50)
+    job_title = models.CharField(max_length=30)
+    pay_rate = models.DecimalField(max_digits=10, decimal_places=2)
     employment_type = models.CharField(max_length=10, choices=employment_type_choice)
     job_description = models.CharField(max_length=2000)
     business_address_region = models.CharField(max_length=50, choices=region_choice)
     business_address_suburb = models.CharField(max_length=50)
     business_industry = models.CharField(max_length=50, choices=industry_choice)
-    contact_method = models.CharField(max_length=50, choices=contact_method_choice)
+    email = models.EmailField(max_length=50, blank=True)
+    telephone = models.IntegerField(blank=True)
     active_listing = models.BooleanField(default=True)
-    job_id = models.AutoField("ID", primary_key=True, editable=False, unique=True)
 
     class Meta:
         verbose_name = 'Job Listing'
+
+    def clean(self):
+        if not (self.email or self.telephone):
+            raise ValidationError("You must specify either email or telephone")
 
     def __unicode__(self):
         return "%s" % self.business_name

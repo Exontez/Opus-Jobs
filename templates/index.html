@@ -3,6 +3,14 @@
 {% block content %}
   <div id="quicksearch">
     <h1 class="pageheader">Where would you to like to work?</h1>
+      <form class="qs-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <input class="qs-form-input" placeholder="Category" type="text" required/>
+        <input class="qs-form-input" placeholder="Location" type="text" required/>
+        <input class="qs-form-input" placeholder="Enter Keywords..." type="text" required/><br>
+        <button type="submit" action="{% url 'featurenotimplemented' %}" class="qs-form-button">Search Jobs</button>
+      </form>
   </div>
   <div id="information">
     <h1 class="pageheader">How Opus Works</h1>

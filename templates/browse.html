@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 class="pageheader">Current Job Listings</h1>
+
+    <div class="joblistings">
+    <p class="jobcounter">There are <b>{{ joblistings.count }}</b> jobs available</p>
+    {% if joblistings %} <!-- This is the for loop used to display the job listings content  -->
+            {% for joblisting in joblistings %}
+                 <div class="listings-item">
+                   <a href="{% url 'listing' joblisting.pk %}">
+                   <ul>
+                   <li class="listing-title">{{ joblisting.job_title }}</li>
+                   <li>Region: {{ joblisting.business_address_suburb }}</li>
+                   <li>Pay Rate: ${{ joblisting.pay_rate }}</li>
+                   <li>Contact Method: {{ joblisting.contact_method }}</li>
+                   </ul>
+                   </a>
+                 </div>
+            {% endfor %}
+
+    {% else %}
+        <p>Unfortunately all of the job opportunities have been taken at this moment.</p>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div id="createjoblisting">
-    <h1 class="pageheader">Create a Job Listing</h1>
+    <h1 class="pageheader">Edit Your Job Listing</h1>
     <form class="createjoblisting" id="createjoblisting_form" method="post" action="{% url 'createjoblisting' %}">
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -20,11 +20,11 @@
         {{ form.business_address_suburb }}<br><p>{{ form.business_address_suburb.errors }}
         <p><label for="id_username" class="form-input-label">Business Industry</label><br>
         {{ form.business_industry }}<br><p>{{ form.business_industry.errors }}
-        <p><label for="id_username" class="form-input-label">Email (Optional)</label><br>
-        {{ form.email }}<br><p>{{ form.email.errors }}
-        <p><label for="id_username" class="form-input-label">Contact Number (Optional)</label><p>Optional</p><br>
+        <p><label for="id_username" class="form-input-label">Contact Number (Must provide either Contact Number or Email)</label><br>
         {{ form.telephone }}<br><p>{{ form.telephone.errors }}
-        <button type="submit" class="form-button">Create Job Listing</button>
+        <p><label for="id_username" class="form-input-label">Email</label><br>
+        {{ form.email }}<br><p>{{ form.email.errors }}
+        <button type="submit" class="form-button">Update Job Listing</button>
     </form>
 </div>
 {% endblock %}

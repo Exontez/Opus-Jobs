@@ -23,8 +23,6 @@ SECRET_KEY = 'h60i*h-cdtftn6&#zs#16enfuap1cm-9)z$g@6v$mp)js%)!5='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -91,7 +89,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = STATIC_PATH
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
@@ -99,18 +96,28 @@ STATICFILES_DIRS = (
 
 # Templates
 
-TEMPLATE_DIRS = (
-    TEMPLATE_PATH,
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            TEMPLATE_PATH
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+            ],
 
-# Django AllAuth Configuration
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-    'allauth.account.context_processors.account',
-    'allauth.socialaccount.context_processors.socialaccount',
-    'django.contrib.auth.context_processors.auth'
-)
+        },
+    },
+]
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

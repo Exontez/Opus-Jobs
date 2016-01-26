@@ -1,30 +1,63 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="listing-wrapper">
     <div class="listing-content">
         <div class="listing-left-column">
         <p class="listing-details-title">Job Details</p>
-        <p class="listing-details-bold">Job Title:</p><p class="listing-details-info">{{ joblistings.job_title }}</p>
-        <p class="listing-details-bold">Employment Type:</p><p class="listing-details-info">{{ joblistings.employment_type }}</p>
+        <p class="listing-details-bold">Job Title:</p><p class="listing-details-info">{{ joblistings.job_title|capfirst }}</p>
+        <p class="listing-details-bold">Employment Type:</p><p class="listing-details-info">{{ joblistings.get_employment_type_display }}</p>
         <p class="listing-details-bold">Pay Rate:</p><p class="listing-details-info">${{ joblistings.pay_rate }}</p>
-        <p class="listing-details-bold">Business Region:</p><p class="listing-details-info">{{ joblistings.business_address_region }}</p>
-        <p class="listing-details-bold">Business Suburb:</p><p class="listing-details-info">{{ joblistings.business_address_suburb }}</p>
-        <p class="listing-details-bold">Business Industry:</p><p class="listing-details-info">{{ joblistings.business_industry }}</p>
-        <p class="listing-details-bold">Email:</p><p class="listing-details-info">{{ joblistings.email }}</p>
-        <p class="listing-details-bold">Contact Number:</p><p class="listing-details-info">{{ joblistings.telephone }}</p>
-        <button type="submit" class="listing-details-button">Contact Employer</button>
+        <p class="listing-details-bold">Business Region:</p><p class="listing-details-info">{{ joblistings.get_business_address_region_display }}</p>
+        <p class="listing-details-bold">Business Suburb:</p><p class="listing-details-info">{{ joblistings.get_business_address_suburb_display|capfirst }}</p>
+        <p class="listing-details-bold">Business Industry:</p><p class="listing-details-info">{{ joblistings.get_business_industry_display }}</p>
+        <p class="listing-details-bold">Email:</p><p class="listing-details-info">{{ joblistings.email|capfirst }}</p>
+        <p class="listing-details-bold">Contact Number:</p><p class="listing-details-info">
+            {% if joblistings.telephone != 'Not Provided' %}
+                ({{ joblistings.get_area_code_display }})
+            {% endif %}
+        {{ joblistings.telephone }}</p>
+        {% if joblistings.email != 'Not Provided' %}
+            <button type="submit" class="listing-details-button">
+            <a href="mailto:{{ joblistings.email }}?Subject={{ joblistings.job_title }}%20-%20Application%20-%20Opus Jobs" class="listing-email-link">Email Employer</a></button>
+        {% endif %}
+
         </div>
         <div class="listing-right-column">
-        <h1 class="listing-title-secondary">{{ joblistings.job_title }}</h1>
+        <h1 class="listing-title-secondary">{{ joblistings.job_title|capfirst }}</h1>
         <p class="listing-job-description">{{ joblistings.job_description }}</p>
             <div class="listing-application">
                 <h1 class="listing-details-title">How To Apply?</h1>
                 <ul class="listing-application-bullets">
                     <li>Each employer will have provided either a contact number, a email or both in the job details to the left.</li>
-                    <li>Simply use the buttons below which will direct you on how to contact them, however if that doesn't work you can contact </li>
+                    <li>You can contact them via any of the methods provided, whichever one suits you best.</li>
+                    <li>Just make sure when you do, that you let them know Opus sent you!</li>
                 </ul>
+                <div class="listing-application-contact">
+                    <div><p class="listing-application-bold">Email:</p><p class="listing-application-info">{{ joblistings.email|capfirst }}</p></div>
+                    <div><p class="listing-application-bold">Contact Number:</p><p class="listing-application-info">
+                        {% if joblistings.telephone != 'Not Provided' %}
+                            ({{ joblistings.get_area_code_display }})
+                        {% endif %}{{ joblistings.telephone }}</p></div>
+                </div>
             </div>
         </div>
     </div>
+</div>
+    <p class="view-counter-title">Page Views</p>
+    <div class="view-counter">
+        <p>{{ joblistings.listing_view_counter|stringformat:"05d" }}</p>
+    </div>
+    <div class="ad-alert">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Listings Banner -->
+        <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9407013200292589" data-ad-slot="7535806952"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+<script>
+function myFunction() {
+    alert("Sorry! This employer has only provided a contact number.");
+}
+</script>
 
 {% endblock %}

@@ -49,7 +49,7 @@ body {
     list-style-type: none;
     font-weight: bold;
     font-family: Gotham-Thin;
-    font-size: 12px;
+    font-size: 14px;
     width: 100%;
     height: 130px;
     text-align: center;
@@ -60,6 +60,9 @@ body {
     color: #454545;
     margin-top: 8px;
     margin-bottom: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
 }
 #footer li a {
     text-decoration: none;
@@ -72,7 +75,6 @@ body {
     margin-top: 10px;
     margin-right: 40px;
     margin-left: 40px;
-    display: inline-block;
 }
 #quicksearch {
     font-family: Gotham-Thin;
@@ -87,11 +89,49 @@ body {
     margin-top: 50px;
 }
 
+/* INDEX STYLING */
+
+#information {
+    width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+.information-div {
+    display: inline-block;
+}
+.information-div p {
+    font-family: Gotham-Thin;
+    font-weight: 900;
+    font-size: 19px;
+    color: #5c5c5c;
+}
+#information img {
+    width: 135px;
+    height: 135px;
+    margin: auto;
+    margin-top: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
+    border-radius: 80%;
+    transition: opacity 0.5s ease-out;
+}
+#information img:hover {
+    opacity: 0.7;
+}
+.ad-alert {
+    width: 728px;
+    height: 90px;
+    background: #cccccc;
+    background-image: url("../images/random-alert.png");
+    margin: auto;
+    margin-top: 30px;
+}
+
 /* DROPDOWN STYLING */
 
 .link-drop {
-    cursor: context-menu;
-    position:relative;
+    cursor: default;
+    position: relative;
     list-style-type: none;
     display: inline;
     font-size: 16px;
@@ -102,7 +142,6 @@ body {
 }
 .link-drop li {
     list-style-type: none;
-
 }
 .link-drop a {
     text-decoration: none;
@@ -166,7 +205,6 @@ body {
 .link-drop:hover > .link-drop-ul {
     display: block;
     position: absolute;
-
 }
 
 /* FORM STYLING */
@@ -236,6 +274,10 @@ body {
     padding-left: 25px;
     margin-top: 0;
 }
+.form-optional-tag {
+    font-weight: normal;
+    font-size: 12px;
+}
 form ul {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -260,6 +302,10 @@ form ul {
     font-family: Gotham-Thin;
     font-weight: bold;
     text-indent: 10px;
+}
+.qs-form-input option {
+    font-family: arial;
+    font-size: 15px;
 }
 .qs-form-button {
     height: 45px;
@@ -337,6 +383,16 @@ form ul {
 #createjoblisting ul {
     list-style-type: none;
 }
+.form-contact-split {
+    display: inline;
+}
+.form-contact-split select {
+    width: 60px;
+}
+.form-contact-split input {
+    margin-left: 15px;
+    width: 425px;
+}
 
 /* FORGOT PASSWORD STYLING */
 
@@ -385,12 +441,20 @@ form ul {
 }
 
 /* JOB LISTINGS PAGE */
-
-.joblistings {
-    width: 50%;
+.browser-aligner {
+    width: 1100px;
     margin: auto;
+}
+.browser-wrapper {
+    display: inline-block;
+}
+.joblistings {
+    width: 700px;
     font-family: Gotham-Thin;
-    font-size: 18x;
+    font-size: 18px;
+    display: inline-block;
+    margin-left: 30px;
+    text-align: left;
 }
 .joblistings a {
     text-decoration: none;
@@ -417,8 +481,66 @@ form ul {
 .jobcounter {
     text-align: right;
     font-style: italic;
+    font-family: Gotham-Thin;
 }
-
+.searchrefiner {
+    text-align: center;
+    margin-top: 5px;
+    width: 280px;
+    height: 800px;
+    background-color: #1e528a;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 30px;
+    border-radius: 3px;
+    opacity: 0.85;
+}
+.searchrefiner-title {
+    font-family: Gotham-Thin;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #c8c8c8;
+}
+.searchrefiner-field-title {
+    text-align: left;
+    font-family: Gotham-Thin;
+    color: #e5e5e5;
+    margin-top: 0px;
+    margin-bottom: -15px;
+    margin-left: 30px;
+}
+.qsm-form-input {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #a8a8a9;
+    background-color: #f1f1f1;
+    height: 40px;
+    width: 225px;
+    border-radius: 4px;
+    font-size: 17px;
+    font-family: Gotham-Thin;
+    font-weight: bold;
+    text-indent: 10px;
+}
+.qsm-form-input option {
+    font-family: arial;
+    font-size: 15px;
+}
+.qsm-form-button {
+    height: 45px;
+    width: 190px;
+    border-radius: 3px;
+    background-color: #717274;
+    font-size: 15px;
+    color: white;
+	margin-top: 35px;
+    cursor: pointer;
+    font-family: Gotham-Thin;
+}
+.qsm-form-button:hover {
+    background-color: #444444;
+}
 /* FEATURE NOT IMPLEMENTED PAGE */
 
 .feature {
@@ -455,9 +577,13 @@ form ul {
 .listing-content {
     margin: auto;
     width: 1000px;
+    min-height: 600px;
     text-align: center;
     margin-top: 35px;
     display: flex;
+}
+.listing-wrapper {
+    height: 750px;
 }
 .listing-title-secondary {
     font-family: Gotham-Thin;
@@ -471,7 +597,6 @@ form ul {
     padding-left: 15px;
     margin-right: 30px;
     width: 250px;
-    height: 640px;
     border: 1px solid #545455;
     border-radius: 1px;
     font-family: Arial;
@@ -495,18 +620,20 @@ form ul {
 .listing-job-description {
     font-family: arial;
     line-height: 22px;
+    min-height:284px;
 }
 .listing-details-bold {
     font-weight: bold;
     font-size: 14px;
-        text-align: left;
+    text-align: left;
 }
 .listing-details-info {
     font-size: 14px;
-        text-align: left;
+    text-align: left;
 }
 .listing-details-button {
     margin-right: 17px;
+    margin-bottom: 25px;
     height: 55px;
     width: 200px;
     border-radius: 6px;
@@ -522,9 +649,9 @@ form ul {
     background-color: #1d659d;
 }
 .listing-application {
-    margin-top: 182px;
     padding-left: 15px;
     margin-right: 30px;
+    margin-top: 30px;
     width: 635px;
     height: 240px;
     border: 1px solid #545455;
@@ -537,4 +664,63 @@ form ul {
     font-family: arial;
     font-size: 15px;
     margin-right: 20px;
+    line-height: 23px;
+}
+.listing-application-contact {
+    text-align: center;
+}
+.listing-application-contact div{
+    display: inline-block;
+    margin-left: 75px;
+    margin-right: 95px;
+    margin-top: -10px;
+}
+.listing-application-bold {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+}
+.listing-application-info {
+    font-size: 14px;
+    text-align: left;
+}
+.listing-email-link {
+    text-decoration: none;
+    color: white;
+}
+.view-counter-title {
+    text-align: center;
+    font-family: Gotham-Thin;
+    margin-top: 30px;
+    font-size: 14px;
+}
+.view-counter {
+    margin: auto;
+    margin-top: -10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 60px;
+    height: 25px;
+    border: 1px solid #545455;
+    border-radius: 3px;
+    background-color: #f3f3f3;
+    font-family: Arial;
+    opacity: 0.8;
+}
+.view-counter p {
+    margin-top: 5px;
+    margin-left: 2px;
+    letter-spacing: 2px;
+}
+
+/* CREDITS PAGE */
+
+.creditsheader {
+    font-family: Gotham-Thin;
+    font-size: 45px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.creditslinks {
+    font-family: Arial;
 }

@@ -17,7 +17,7 @@ def createjoblisting(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            return HttpResponseRedirect('index')
+            return redirect('listing', profile.pk)
     else:
         form = JobListingForm()
 
@@ -27,7 +27,7 @@ def createjoblisting(request):
 
     return render(request, "createjoblisting.html", context)
 
-#ADD A REDIRECT AFTER THIS PAGE
+#MAKE A REDIRECT TO THE NEWLY CREATED PAGE
 
 # This is the view which manages the edit profile page
 @login_required(redirect_field_name='login')
@@ -59,18 +59,19 @@ def editlisting(request, pk):
 
     if request.method == "POST":
         print("test")
-        form = JobListingForm(request.POST, instance=post, force_update=True)
+        form = JobListingForm(request.POST, instance=post)
 
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('listing', post.pk)
 
     else:
         print("else")
         form = JobListingForm(instance=post)
 
     context = {
-        "form": form
+        "form": form,
+        "post": post
     }
 
     return render(request, "editlisting.html", context)
@@ -80,8 +81,6 @@ def editlistingportal(request):
 
     account_owner = request.user
     job_listings = JobListing.objects.filter(user=account_owner).exclude(active_listing=False)
-    test = JobListing.objects.exclude(active_listing=False)
-    print(test)
 
     context = {'joblistings': job_listings}
 

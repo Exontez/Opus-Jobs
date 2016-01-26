@@ -23,23 +23,34 @@ class SignUpProfile(models.Model):
 class JobListing(models.Model):
 
     region_choice = (
-        ('Auckland', 'Auckland'),
-        ('Wellington', 'Wellington'),
-        ('Christchurch', 'Christchurch')
+        ('1', 'Auckland'),
+        ('2', 'Wellington'),
+        ('3', 'Christchurch')
+    )
+    suburb_choice = (
+        ('1', 'Glendowie'),
+        ('2', 'Kohimarama'),
+        ('3', 'Herne Bay')
     )
     industry_choice = (
-        ('Accounting', 'Accounting'),
-        ('Agriculture, fishing & forestry', 'Agriculture, fishing & forestry'),
-        ('Automotive', 'Automotive'),
-        ('Banking, finance & insurance', 'Banking, finance & insurance'),
-        ('Construction & Architecture', 'Construction & Architecture'),
-        ('Customer service', 'Customer service'),
+        ('1', 'Accounting'),
+        ('2', 'Agriculture, fishing & forestry'),
+        ('3', 'Automotive'),
+        ('4', 'Banking, finance & insurance'),
+        ('5', 'Construction & Architecture'),
+        ('6', 'Customer service'),
     )
     employment_type_choice = (
-        ('Full Time', 'Full Time'),
-        ('Part Time', 'Part Time'),
-        ('One-off', 'One-off'),
-        ('Other', 'Other')
+        ('1', 'Full Time'),
+        ('2', 'Part Time'),
+        ('3', 'One-off'),
+        ('4', 'Other')
+    )
+    area_code_choice = (
+        ('1', '021'),
+        ('2', '027'),
+        ('3', '022'),
+        ('4', 'Other')
     )
 
     user = models.CharField(max_length=50)
@@ -48,10 +59,12 @@ class JobListing(models.Model):
     employment_type = models.CharField(max_length=10, choices=employment_type_choice)
     job_description = models.CharField(max_length=2000)
     business_address_region = models.CharField(max_length=50, choices=region_choice)
-    business_address_suburb = models.CharField(max_length=50)
+    business_address_suburb = models.CharField(max_length=50, choices=suburb_choice)
     business_industry = models.CharField(max_length=50, choices=industry_choice)
-    email = models.EmailField(max_length=50, blank=True)
-    telephone = models.IntegerField(blank=True)
+    email = models.EmailField(max_length=50, blank=True, null=True)
+    telephone = models.CharField(max_length=20, blank=True, null=True)
+    area_code = models.CharField(max_length=5, choices=area_code_choice, blank=True)
+    listing_view_counter = models.IntegerField(default=0)
     active_listing = models.BooleanField(default=True)
 
     class Meta:
@@ -60,9 +73,13 @@ class JobListing(models.Model):
     def clean(self):
         if not (self.email or self.telephone):
             raise ValidationError("You must specify either email or telephone")
+        if not self.email:
+            self.email = "Not Provided"
+        if not self.telephone:
+            self.telephone = "Not Provided"
 
     def __unicode__(self):
-        return "%s" % self.business_name
+        return "%s" % self.job_title
 
 
 

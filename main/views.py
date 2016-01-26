@@ -1,20 +1,36 @@
 from django.shortcuts import render
+from listings.forms import JobQuickSearchForm
 
-# This is my index page view
 def index(request):
 
-    context_dict = {}
+    print(request.GET)
+    if 'submit' in request.GET:
+        print("submit")
+        form = JobQuickSearchForm()
+
+        if form.clean():
+            print("valid")
+    else:
+        form = JobQuickSearchForm()
+
+    context_dict = {
+        "form": form
+    }
 
     return render(request, 'index.html', context_dict)
 
-# This is my about page view
 def about(request):
 
     context_dict = {}
 
     return render(request, 'about.html', context_dict)
 
-# This is my feature not implemented page
+def credits(request):
+
+    context_dict = {}
+
+    return render(request, 'credits.html', context_dict)
+
 def featurenotimplemented(request):
 
     context_dict = {}

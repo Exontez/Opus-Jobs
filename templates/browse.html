@@ -3,25 +3,45 @@
 {% block content %}
 
     <h1 class="pageheader">Current Job Listings</h1>
-
-    <div class="joblistings">
+    <div class="browser-aligner">
+    <div class="browser-wrapper">
     <p class="jobcounter">There are <b>{{ joblistings.count }}</b> jobs available</p>
-    {% if joblistings %} <!-- This is the for loop used to display the job listings content  -->
-            {% for joblisting in joblistings %}
-                 <div class="listings-item">
-                   <a href="{% url 'listing' joblisting.pk %}">
-                   <ul>
-                   <li class="listing-title">{{ joblisting.job_title }}</li>
-                   <li>Region: {{ joblisting.business_address_suburb }}</li>
-                   <li>Pay Rate: ${{ joblisting.pay_rate }}</li>
-                   <li>Contact Method: {{ joblisting.contact_method }}</li>
-                   </ul>
-                   </a>
-                 </div>
-            {% endfor %}
+        <div class="searchrefiner">
+            <h2 class="searchrefiner-title">Job Finder</h2>
+            <form class="qsm-form" action="{% url 'browse' %}" method="GET">
+                {{ form.non_field_errors }}
+                <p class="searchrefiner-field-title">Business Industry</p><br>
+                {{ form.business_industry }}
+                <p class="searchrefiner-field-title">Business Region</p><br>
+                {{ form.business_address_region }}
+                <p class="searchrefiner-field-title">Employment Type</p><br>
+                {{ form.employment_type }}
+                <p class="searchrefiner-field-title">Pay Rate</p><br>
+                {{ form.pay_rate }}
+                <p class="searchrefiner-field-title">Keywords</p><br>
+                {{ form.keywords }}<br>
+                <button type="submit" class="qsm-form-button">Search Jobs</button>
+            </form>
+        </div>
+        <div class="joblistings">
+        {% if joblistings %} <!-- This is the for loop used to display the job listings content  -->
+                {% for joblisting in joblistings %}
+                     <div class="listings-item">
+                       <a href="{% url 'listing' joblisting.pk %}">
+                       <ul>
+                       <li class="listing-title">{{ joblisting.job_title|capfirst }}</li>
+                       <li>Region: {{ joblisting.get_business_address_suburb_display|capfirst }}</li>
+                       <li>Pay Rate: ${{ joblisting.pay_rate }}</li>
+                       <li>Contact Method: {{ joblisting.contact_method }}</li>
+                       </ul>
+                       </a>
+                     </div>
+                {% endfor %}
 
-    {% else %}
-        <p>Unfortunately all of the job opportunities have been taken at this moment.</p>
-    {% endif %}
+        {% else %}
+            <p>Unfortunately all of the job opportunities have been taken at this moment.</p>
+        {% endif %}
+        </div>
+    </div>
     </div>
 {% endblock %}

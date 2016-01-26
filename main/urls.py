@@ -5,6 +5,7 @@ import main.views
 urlpatterns = [
     url(r'^$', main.views.index, name='index'),
     url(r'^about/$', main.views.about, name="about"),
+    url(r'^credits/$', main.views.credits, name="credits"),
     url(r'^sorry/$', main.views.featurenotimplemented, name="featurenotimplemented"),
 
 ]

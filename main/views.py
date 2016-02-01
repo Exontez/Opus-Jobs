@@ -3,15 +3,7 @@ from listings.forms import JobQuickSearchForm
 
 def index(request):
 
-    print(request.GET)
-    if 'submit' in request.GET:
-        print("submit")
-        form = JobQuickSearchForm()
-
-        if form.clean():
-            print("valid")
-    else:
-        form = JobQuickSearchForm()
+    form = JobQuickSearchForm()
 
     context_dict = {
         "form": form

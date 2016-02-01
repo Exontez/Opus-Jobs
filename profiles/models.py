@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+import datetime
 
 #This is the model for my extended signup profile
 class SignUpProfile(models.Model):
@@ -66,6 +67,7 @@ class JobListing(models.Model):
     area_code = models.CharField(max_length=5, choices=area_code_choice, blank=True)
     listing_view_counter = models.IntegerField(default=0)
     active_listing = models.BooleanField(default=True)
+    listing_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Job Listing'

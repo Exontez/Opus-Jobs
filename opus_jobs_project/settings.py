@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import django.contrib.auth
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
@@ -40,10 +41,10 @@ INSTALLED_APPS = (
     'listings',
     'profiles',
     'allauth',
+    'opus_login',
     'allauth.account',
     'allauth.socialaccount',
-    #'allauth.socialaccount.providers.facebook',
-    #'allauth.socialaccount.providers.instagram',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -132,3 +133,6 @@ ACCOUNT_USERNAME_MIN_LENGTH = 6
 ACCOUNT_USERNAME_BLACKLIST = ['admin', 'staff']
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 LOGIN_REDIRECT_URL = '/'
+
+# Registration App
+django.contrib.auth.LOGIN_URL = '/'

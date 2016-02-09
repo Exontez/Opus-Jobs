@@ -28,3 +28,9 @@ def featurenotimplemented(request):
     context_dict = {}
 
     return render(request, 'feature_notimplemented.html', context_dict)
+
+def permissiondenied(request):
+
+    context_dict = {}
+
+    return render(request, 'permission_denied.html', context_dict)

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="pageheader">Delete your listing?</h1>
+<div class="delete-listing">
+    <div><a href="{% url 'deletefunction' post.pk %}">Yes, I'd like to delete my listing</a><br></div>
+    <div><a href="{% url 'editlistingportal' %}">Cancel</a></div>
+</div>
+{% endblock %}

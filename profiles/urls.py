@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/editprofile/', views.editprofile, name='editprofile'),
     url(r'^(?P<pk>[0-9]+)/editlisting/', views.editlisting, name='editlisting'),
     url(r'^editlistingportal/', views.editlistingportal, name='editlistingportal'),
+    url(r'^(?P<pk>[0-9]+)/deletelistingconfirm/', views.deletelistingconfirm, name='deletelistingconfirm'),
+    url(r'^(?P<pk>[0-9]+)/deletefunction/', views.deletefunction, name='deletefunction'),
 ]

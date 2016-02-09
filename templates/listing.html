@@ -11,13 +11,21 @@
         <p class="listing-details-bold">Business Region:</p><p class="listing-details-info">{{ joblistings.get_business_address_region_display }}</p>
         <p class="listing-details-bold">Business Suburb:</p><p class="listing-details-info">{{ joblistings.get_business_address_suburb_display|capfirst }}</p>
         <p class="listing-details-bold">Business Industry:</p><p class="listing-details-info">{{ joblistings.get_business_industry_display }}</p>
-        <p class="listing-details-bold">Email:</p><p class="listing-details-info">{{ joblistings.email|capfirst }}</p>
-        <p class="listing-details-bold">Contact Number:</p><p class="listing-details-info">
-            {% if joblistings.telephone != 'Not Provided' %}
-                ({{ joblistings.get_area_code_display }})
+        <p class="listing-details-bold">Email:</p><p class="listing-details-info">
+            {% if joblistings.email != '' %}
+                {{ joblistings.email|capfirst }}
+            {% else %}
+                Not Provided
             {% endif %}
-        {{ joblistings.telephone }}</p>
-        {% if joblistings.email != 'Not Provided' %}
+        </p>
+        <p class="listing-details-bold">Contact Number:</p><p class="listing-details-info">
+            {% if joblistings.telephone != '' %}
+                ({{ joblistings.get_area_code_display }}) {{ joblistings.telephone }}
+            {% else %}
+                Not Provided
+            {% endif %}
+        </p>
+        {% if joblistings.email != '' %}
             <button type="submit" class="listing-details-button">
             <a href="mailto:{{ joblistings.email }}?Subject={{ joblistings.job_title }}%20-%20Application%20-%20Opus Jobs" class="listing-email-link">Email Employer</a></button>
         {% endif %}
@@ -34,11 +42,20 @@
                     <li>Just make sure when you do, that you let them know Opus sent you!</li>
                 </ul>
                 <div class="listing-application-contact">
-                    <div><p class="listing-application-bold">Email:</p><p class="listing-application-info">{{ joblistings.email|capfirst }}</p></div>
+                    <div><p class="listing-application-bold">Email:</p><p class="listing-application-info">
+                        {% if joblistings.email != '' %}
+                            {{ joblistings.email|capfirst }}
+                        {% else %}
+                            Not Provided
+                        {% endif %}
+                    </p></div>
                     <div><p class="listing-application-bold">Contact Number:</p><p class="listing-application-info">
-                        {% if joblistings.telephone != 'Not Provided' %}
-                            ({{ joblistings.get_area_code_display }})
-                        {% endif %}{{ joblistings.telephone }}</p></div>
+                        {% if joblistings.telephone != '' %}
+                            ({{ joblistings.get_area_code_display }}) {{ joblistings.telephone }}
+                        {% else %}
+                            Not Provided
+                        {% endif %}
+                    </p></div>
                 </div>
             </div>
         </div>

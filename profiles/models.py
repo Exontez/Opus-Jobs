@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-import datetime
 
 #This is the model for my extended signup profile
 class SignUpProfile(models.Model):
@@ -51,7 +50,7 @@ class JobListing(models.Model):
         ('1', '021'),
         ('2', '027'),
         ('3', '022'),
-        ('4', 'Other')
+        ('4', '09')
     )
 
     user = models.CharField(max_length=50)
@@ -67,7 +66,7 @@ class JobListing(models.Model):
     area_code = models.CharField(max_length=5, choices=area_code_choice, blank=True)
     listing_view_counter = models.IntegerField(default=0)
     active_listing = models.BooleanField(default=True)
-    listing_date = models.DateTimeField(auto_now_add=True)
+    listing_date = models.DateField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Job Listing'
@@ -76,9 +75,9 @@ class JobListing(models.Model):
         if not (self.email or self.telephone):
             raise ValidationError("You must specify either email or telephone")
         if not self.email:
-            self.email = "Not Provided"
+            self.email = ""
         if not self.telephone:
-            self.telephone = "Not Provided"
+            self.telephone = ""
 
     def __unicode__(self):
         return "%s" % self.job_title

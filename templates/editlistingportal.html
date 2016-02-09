@@ -4,17 +4,19 @@
 
     <h1 class="pageheader">Edit Your Job Listings</h1>
 
-    <div class="joblistings">
+    <div class="editjoblistingportal">
     <p class="jobcounter">You have <b>{{ joblistings.count }}</b> listings available</p>
     {% if joblistings %}
             {% for joblisting in joblistings %}
-                 <div class="listings-item">
-                   <a href="{% url 'editlisting' joblisting.pk %}">
+                 <div class="edit-listings-item">
+                   <a>
                    <ul>
                    <li class="listing-title">{{ joblisting.job_title }} - {{ joblisting.business_name }}</li>
                    <li>Region: {{ joblisting.get_business_address_suburb_display }}</li>
                    <li>Pay Rate: ${{ joblisting.pay_rate }}</li>
                    <li>Contact Method: {{ joblisting.contact_method }}</li>
+                   <div class="listings-item-delete"><a href="{% url 'deletelistingconfirm' joblisting.pk %}">Delete Listing</a></div>
+                   <div class="listings-item-delete"><a href="{% url 'editlisting' joblisting.pk %}">Edit Listing</a></div>
                    </ul>
                    </a>
                  </div>

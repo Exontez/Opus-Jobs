@@ -9,6 +9,7 @@ class SignUpProfileAdmin(admin.ModelAdmin):
 
 class JobListingAdmin(admin.ModelAdmin):
     list_display = ["__unicode__", "job_title", "user"]
+    readonly_fields = ['listing_date']
 
     class Meta:
         model = JobListing

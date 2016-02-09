@@ -27,8 +27,6 @@ def createjoblisting(request):
 
     return render(request, "createjoblisting.html", context)
 
-#MAKE A REDIRECT TO THE NEWLY CREATED PAGE
-
 # This is the view which manages the edit profile page
 @login_required(redirect_field_name='login')
 def editprofile(request, pk):
@@ -58,7 +56,6 @@ def editlisting(request, pk):
         return redirect("index")
 
     if request.method == "POST":
-        print("test")
         form = JobListingForm(request.POST, instance=post)
 
         if form.is_valid():
@@ -66,7 +63,6 @@ def editlisting(request, pk):
             return redirect('listing', post.pk)
 
     else:
-        print("else")
         form = JobListingForm(instance=post)
 
     context = {
@@ -85,3 +81,32 @@ def editlistingportal(request):
     context = {'joblistings': job_listings}
 
     return render(request, "editlistingportal.html", context)
+
+@login_required(redirect_field_name='login')
+def deletelistingconfirm(request, pk):
+
+    post = JobListing.objects.get(pk=pk)
+
+    if str(request.user) != str(post.user):
+        return redirect("index")
+
+    context_dict = {'post': post}
+
+    return render(request, 'delete_listing_confirm.html', context_dict)
+
+@login_required(redirect_field_name='login')
+def deletefunction(request, pk):
+
+    post = JobListing.objects.get(pk=pk)
+
+    if str(request.user) != str(post.user):
+        return redirect("permissiondenied")
+
+    post.active_listing = True
+    post.save()
+
+    return redirect('editlistingportal')
+
+    context_dict = {}
+
+    return render(request, 'delete_function.html', context_dict)
